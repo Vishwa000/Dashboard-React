@@ -21,7 +21,7 @@ function App() {
           <Route path="user-list" element={<Userlist />} />
           <Route path="user-create" element={<Usercreate />} />
           <Route path="user-view/:userid" element={<Userview />} />
-          <Route path="user-edit/:editid" element={<Useredit />} />
+          <Route path="user-edit/:userid" element={<Useredit />} />
         </Route>
       </Routes>
     </BrowserRouter>

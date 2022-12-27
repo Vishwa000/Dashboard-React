@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Lottie from "lottie-react";
-import loadingAnimation from "./loading-002 (1).json";
+import loadingAnimation from "./合成 1";
 import { faUserTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -25,7 +25,21 @@ function Userlist() {
       console.log(error);
     }
   };
-
+  let handleDelete = async (id) => {
+    try {
+      let confirmData = window.confirm(
+        "Are Sure do you want delete this data?"
+      );
+      if (confirmData) {
+        await axios.delete(
+          `https://63a5e3a8318b23efa7a03094.mockapi.io/users/${id}`
+        );
+        getUsers();
+      }
+    } catch (error) {
+      alert("Somethink went error");
+    }
+  };
   return (
     <>
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -91,7 +105,10 @@ function Userlist() {
                               Edit
                             </Link>
 
-                            <button className="ele-b btn btn-danger btn-sm ">
+                            <button
+                              onClick={() => handleDelete(data.id)}
+                              className="ele-b btn btn-danger btn-sm "
+                            >
                               <FontAwesomeIcon icon={faUserTimes} />
                             </button>
                           </div>
